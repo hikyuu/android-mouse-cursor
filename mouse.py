@@ -12,8 +12,9 @@ def getch():   # define non-Windows version
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
-
-UDP_IP = "2a01:30:2804:301:c83c:2325:9d2b:9a40"
+# get your phones IP by visiting https://www.whatismyip.com/
+# then specify your IPv6 here like so
+UDP_IP = "2a01:30:2a04:3c1:c83c:2315:9d2b:9a40"   # IPv6
 UDP_PORT = 9999
 
 print "UDP target IP:", UDP_IP
@@ -23,9 +24,13 @@ print "W, A, S, D - Move mouse"
 print "Space      - Click"
 print "Q          - Quit"
 
-
+# IPv6
 sock = socket.socket(socket.AF_INET6, # Internet
                      socket.SOCK_DGRAM) # UDP
+
+# IPv4
+# sock = socket.socket(socket.AF_INET, # Internet
+#                      socket.SOCK_DGRAM) # UDP
 
 while True:
     key = ord(getch())
