@@ -13,7 +13,7 @@ def getch():   # define non-Windows version
     return ch
 
 
-UDP_IP = "162.158.114.32"
+UDP_IP = "2a01:30:2804:301:c83c:2325:9d2b:9a40"
 UDP_PORT = 9999
 
 print "UDP target IP:", UDP_IP
@@ -24,7 +24,7 @@ print "Space      - Click"
 print "Q          - Quit"
 
 
-sock = socket.socket(socket.AF_INET, # Internet
+sock = socket.socket(socket.AF_INET6, # Internet
                      socket.SOCK_DGRAM) # UDP
 
 while True:
