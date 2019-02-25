@@ -1,5 +1,9 @@
 # Android Mouse Cursor
 
+Forked from https://github.com/chetbox/android-mouse-cursor. Just updated everything to work with API level 27 (Oreo, 8.1). 
+
+Original content:
+
 An (sort-of functional) example of how you can simulate a moouse on Android using a floating window and an Accessbility Service to click on Views.
 
 ## Usage
