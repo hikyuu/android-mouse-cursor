@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -88,12 +90,20 @@ public class MouseAccessibilityService extends AccessibilityService {
         cursorLayout = new LayoutParams(
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT,
-                LayoutParams.TYPE_SYSTEM_ERROR,
-                LayoutParams.FLAG_DISMISS_KEYGUARD | LayoutParams.FLAG_NOT_FOCUSABLE | LayoutParams.FLAG_NOT_TOUCHABLE,
-                PixelFormat.TRANSLUCENT);
-        cursorLayout.gravity = Gravity.TOP | Gravity.LEFT;
+                LayoutParams.TYPE_APPLICATION_OVERLAY,
+                LayoutParams.FLAG_DISMISS_KEYGUARD | LayoutParams.FLAG_NOT_FOCUSABLE | LayoutParams.FLAG_NOT_TOUCHABLE ,
+                PixelFormat.TRANSLUCENT
+        );
+        cursorLayout.gravity = Gravity.TOP | Gravity.START;
         cursorLayout.x = 200;
         cursorLayout.y = 200;
+
+//        int LAYOUT_FLAG;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            LAYOUT_FLAG = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+//        } else {
+//            LAYOUT_FLAG = WindowManager.LayoutParams.TYPE_PHONE;
+//        }
 
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
@@ -115,13 +125,21 @@ public class MouseAccessibilityService extends AccessibilityService {
                                     onMouseMove(new MouseEvent(event));
                                 }
                             });
-                        } catch (IOException e) {}
+                            Log.d("HERE", "HEEERE1");
+                        } catch (IOException e) {
+                            Log.d("HERE", "HEEERE2");
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }).start();
+            Log.d("HERE", "HEEERE3");
         } catch (SocketException e) {
+            Log.d("HERE", "HEEERE4");
             throw new RuntimeException(e);
+
         }
+
     }
 
     @Override
