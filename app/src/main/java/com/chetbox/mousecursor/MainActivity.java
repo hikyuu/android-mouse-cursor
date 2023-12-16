@@ -1,5 +1,6 @@
 package com.chetbox.mousecursor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,16 +14,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
+//        setContentView(R.layout.activity_main);
         addOverlay();
-
     }
 
     @Override
@@ -59,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        finish();
+        super.onResume();
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 4711) {
             if (Settings.canDrawOverlays(this)) {
                 startService(new Intent(this, MouseAccessibilityService.class));
-
             } else {
                 Toast.makeText(this, "ACTION_MANAGE_OVERLAY_PERMISSION Permission Denied", Toast.LENGTH_SHORT).show();
             }
