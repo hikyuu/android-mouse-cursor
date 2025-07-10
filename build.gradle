@@ -4,7 +4,7 @@ buildscript {
     ext {
         agp_version = '8.1.2'
         agp_version1 = '4.2.2'
-        agp_version2 = '8.1.4'
+        agp_version2 = '8.5.0'
     }
     repositories {
         jcenter()

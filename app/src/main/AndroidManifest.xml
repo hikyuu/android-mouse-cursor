@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.chetbox.mousecursor" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,8 +14,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.NoDisplay">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,5 +35,4 @@
                 android:resource="@xml/mouse_accessibility_service_config" />
         </service>
     </application>
-
 </manifest>
